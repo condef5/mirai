@@ -2,10 +2,11 @@ import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const Wrap = styled.div`
   max-width: 1000px;
-  margin: auto;
+  margin: 30px auto;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -18,6 +19,12 @@ const Box = styled.div`
   margin: 1em;
   width: calc(33.3% - 2em);
   box-sizing: border-box;
+  @media (max-width: 768px) {
+    width: calc(50% - 2em);
+  }
+  @media (max-width: 576px) {
+    width: calc(100% - 2em);
+  }
 `;
 
 const Image = styled.img`
@@ -43,16 +50,21 @@ export const QUERY_SERIES = gql`
 
 function Series() {
   const { loading, error, data } = useQuery(QUERY_SERIES);
-
+  const router = useRouter();
+  const { tag } = router.query;
   if (error) return <div>Error</div>;
 
   if (loading) return <div>Loading...</div>;
 
   const { series } = data;
 
+  const filteredSeries = tag
+    ? series.filter(serie => serie.tags.some(item => item.name === tag))
+    : series;
+
   return (
     <Wrap>
-      {series.map(serie => (
+      {filteredSeries.map(serie => (
         <Box key={serie.id}>
           <Image src={serie.image} style={{ maxWidth: "100%" }} alt="" />
           <h2>{serie.name}</h2>
