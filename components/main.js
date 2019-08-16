@@ -4,7 +4,6 @@ import Series from "./series";
 
 const MainStyle = styled.div`
   width: 100%;
-  max-height: calc(100vh - 32px);
 `;
 
 function Main() {

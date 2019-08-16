@@ -9,6 +9,7 @@ const Wrap = styled.div`
 `;
 
 export default function HomePage() {
+
   return (
     <main>
       <GlobalStyle />

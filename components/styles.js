@@ -2,7 +2,8 @@ import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    background: #f2f2f2;
+    background: #f7f9fa;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     color: ${props => (props.whiteColor ? "white" : "black")};
     min-height: 100vh;
