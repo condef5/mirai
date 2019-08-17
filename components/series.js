@@ -1,8 +1,19 @@
 import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useRouter } from "next/router";
+
+const animationUp = keyframes`
+  0% {
+    transform: translateY(8%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+`;
 
 const Wrap = styled.div`
   max-width: 1000px;
@@ -19,6 +30,7 @@ const Box = styled.div`
   margin: 1em;
   width: calc(33.3% - 2em);
   box-sizing: border-box;
+  animation: ${animationUp} 0.4s ease-out forwards;
   @media (max-width: 768px) {
     width: calc(50% - 2em);
   }

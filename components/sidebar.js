@@ -38,6 +38,12 @@ const SidebarStyle = styled.nav`
   @media (max-width: 1000px) {
     display: ${props => (props.active ? "fixed" : "none")};
   }
+  ${props =>
+    props.active &&
+    `
+    position: fixed;
+  
+  `};
 `;
 
 const WrapStyle = styled.div`
